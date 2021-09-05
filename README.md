@@ -30,7 +30,33 @@ Install [Certbot](https://certbot.eff.org/)
 
 Configure certbot certificates. Use your domain names after -d parameters
 ```bash
-sudo certbot certonly -d farmage.cash -d xcash-delegate.farmage.cash
+sudo certbot certonly -d YOUR_DOMAIN_NAME
 ```
 
-Use the nginx.conf as example of server configuration. Change domain names and path to according to your server configuration.
+Use the nginx.conf as example of server configuration. Change YOUR_DOMAIN_NAME to your domain name according to your server.
+
+Prepare your delegate website to serve it by Openresty web server
+Copy content of "delegates-pool-website" from "xcash-official" folder to your $USER/ folder
+
+For example:
+```
+mkdir -p ~/xcash-delegate/www
+cp -r ~/xcash-official/delegates-pool-website/ ~/xcash-delegate/www
+```
+
+make sure the path in your nginx.conf root location points to the right place
+
+```
+    root /home/xcash/xcash-delegate/www;
+```
+
+Now edit main.js file at ~/xcash-delegate/www
+find 
+```
+explorer_apiEndPoint:"http://delegates.xcash.foundation"
+```
+and replace http://delegates.xcash.foundation to 
+```
+explorer_apiEndPoint:"https://YOUR_DOMAIN_NAME/api/explorer"
+```
+
