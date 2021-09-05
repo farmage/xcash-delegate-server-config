@@ -47,11 +47,12 @@ cp -r ~/xcash-official/delegates-pool-website/ ~/xcash-delegate/www
 make sure the path in your nginx.conf root location points to the right place
 
 ```
-    root /home/xcash/xcash-delegate/www;
+root /home/xcash/xcash-delegate/www;
 ```
 
 Now edit main.js file at ~/xcash-delegate/www
-find 
+find
+
 ```
 explorer_apiEndPoint:"http://delegates.xcash.foundation"
 ```
